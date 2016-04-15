@@ -7,7 +7,6 @@ mandatory_server_fields = [
     "eureka_url","eureka_domain_name", "data_center","eureka_port", "endpoint",
 ]
 
-
 INSTANCE_XML_MAPPING = {
     "hostName": ("host_name","str"),
     "app": ("app_name","str"),

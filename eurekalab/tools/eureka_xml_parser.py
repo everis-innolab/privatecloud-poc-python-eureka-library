@@ -64,13 +64,6 @@ class EurekaXMLParser():
 
     @staticmethod
     def __parse_instance_metadata_into_dict(metadata_xml):
-        """
-        <metadata>
-            <miCampo>33</miCampo>
-        </metadata>
-        :param metadata_xml:
-        :return:
-        """
         if len(metadata_xml.getchildren())<1:
             return None
 
@@ -78,80 +71,3 @@ class EurekaXMLParser():
         for element in metadata_xml.getchildren():
             temp_dict[element.tag]=element.text
         return temp_dict
-
-if __name__ == "__main__":
-
-    test_xml = """
-        <application>
-            <name>MOCKAPP</name>
-            <instance>
-                <hostName>localhost</hostName>
-                <app>MOCKAPP</app>
-                <ipAddr>80.80.80.82</ipAddr>
-                <status>STARTING</status>
-                <overriddenstatus>UNKNOWN</overriddenstatus>
-                <port enabled="true">9999</port>
-                <securePort enabled="false">443</securePort>
-                <countryId>1</countryId>
-                <dataCenterInfo class="com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo">
-                    <name>MyOwn</name>
-                </dataCenterInfo>
-                <leaseInfo>
-                    <renewalIntervalInSecs>30</renewalIntervalInSecs>
-                    <durationInSecs>90</durationInSecs>
-                    <registrationTimestamp>1456321574027</registrationTimestamp>
-                    <lastRenewalTimestamp>1456321719072</lastRenewalTimestamp>
-                    <evictionTimestamp>0</evictionTimestamp>
-                    <serviceUpTimestamp>0</serviceUpTimestamp>
-
-                </leaseInfo>
-                <metadata>
-                    <miCampo>33</miCampo>
-                </metadata>
-                <homePageUrl>localhost</homePageUrl>
-                <statusPageUrl>localhost</statusPageUrl>
-                <healthCheckUrl>localhost</healthCheckUrl>
-                <isCoordinatingDiscoveryServer>false</isCoordinatingDiscoveryServer>
-                <lastUpdatedTimestamp>1456321574027</lastUpdatedTimestamp>
-                <lastDirtyTimestamp>1456321573803</lastDirtyTimestamp>
-                <actionType>ADDED</actionType>
-
-            </instance>
-            <instance>
-                <hostName>localhost2</hostName>
-                <app>MOCKAPP</app>
-                <ipAddr>80.80.80.82</ipAddr>
-                <status>STARTING</status>
-                <overriddenstatus>UNKNOWN</overriddenstatus>
-                <port enabled="true">9999</port>
-                <securePort enabled="false">443</securePort>
-                <countryId>1</countryId>
-                <dataCenterInfo class="com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo">
-                    <name>MyOwn</name>
-
-                </dataCenterInfo>
-                <leaseInfo>
-                    <renewalIntervalInSecs>30</renewalIntervalInSecs>
-                    <durationInSecs>90</durationInSecs>
-                    <registrationTimestamp>1456323845503</registrationTimestamp>
-                    <lastRenewalTimestamp>1456323845503</lastRenewalTimestamp>
-                    <evictionTimestamp>0</evictionTimestamp>
-                    <serviceUpTimestamp>0</serviceUpTimestamp>
-
-                </leaseInfo>
-                <metadata class="java.util.Collections$EmptyMap"/>
-                <homePageUrl>localhost</homePageUrl>
-                <statusPageUrl>localhost</statusPageUrl>
-                <healthCheckUrl>localhost</healthCheckUrl>
-                <isCoordinatingDiscoveryServer>false</isCoordinatingDiscoveryServer>
-                <lastUpdatedTimestamp>1456323845503</lastUpdatedTimestamp>
-                <lastDirtyTimestamp>1456323845207</lastDirtyTimestamp>
-                <actionType>ADDED</actionType>
-
-            </instance>
-        </application>
-    """
-    parser = EurekaXMLParser()
-    result = parser.parse_all_instances_of_app_xml(test_xml)
-    print result
-
